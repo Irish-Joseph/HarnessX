@@ -34,3 +34,12 @@ export class BudgetGuard {
     this.spent += amountUsd;
   }
 }
+export { OllamaProvider, OpenAICompatibleProvider } from './providers';
+export { routeModels, compactMessages, estimateTokens, estimateCost } from './routing';
+export { Workspace } from './workspace';
+export { DockerSandbox } from './sandbox';
+export { SessionStore } from './sessions';
+export { Harness } from './agent';
+export { GitTools } from './git';
+export type { Provider, ChatResult, ChatRequest, TaskOptions, Mode, Message, ApprovalRequest, Approve, Progress } from './types';
+export type { Session } from './sessions';

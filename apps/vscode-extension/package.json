@@ -1,7 +1,7 @@
 {
   "name": "harnessx-vscode",
   "displayName": "HarnessX",
-  "description": "Starter for a budget-aware coding harness",
+  "description": "Local-first AI coding harness with approved tools and Docker execution",
   "version": "0.1.0",
   "private": true,
   "publisher": "harnessx-dev",
@@ -11,22 +11,38 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:harnessx.showStatus"
-  ],
+  "activationEvents": ["onView:harnessx.chat", "onCommand:harnessx.openChat"],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "harnessx.showStatus",
-        "title": "HarnessX: Show Status"
+      { "command": "harnessx.openChat", "title": "HarnessX: Open Chat" },
+      { "command": "harnessx.rollback", "title": "HarnessX: Roll Back Last Edit" }
+    ],
+    "viewsContainers": {
+      "activitybar": [{ "id": "harnessx", "title": "HarnessX", "icon": "media/icon.svg" }]
+    },
+    "views": {
+      "harnessx": [{ "id": "harnessx.chat", "name": "Chat", "type": "webview" }]
+    },
+    "configuration": {
+      "title": "HarnessX",
+      "properties": {
+        "harnessx.ollamaUrl": { "type": "string", "default": "http://127.0.0.1:11434", "description": "Ollama server URL." },
+        "harnessx.embeddingModel": { "type": "string", "default": "", "description": "Optional Ollama embedding model for semantic code search. Pull an embedding model first; empty uses lexical search." },
+        "harnessx.compatibleProviders": { "type": "array", "default": [], "description": "OpenAI-compatible endpoints, including Qwen. Each entry: id, baseUrl ending in /v1, apiKeyEnv, and models (array of model IDs or model objects).", "items": { "type": "object" } },
+        "harnessx.maxUsdPerTask": { "type": "number", "default": 0, "minimum": 0, "description": "Maximum estimated model spend per task. Zero allows local free models." },
+        "harnessx.maxAgentSteps": { "type": "number", "default": 12, "minimum": 1, "maximum": 30 },
+        "harnessx.sandboxImage": { "type": "string", "default": "node:22-bookworm-slim" },
+        "harnessx.sandboxMemoryMb": { "type": "number", "default": 512, "minimum": 64 },
+        "harnessx.sandboxTimeoutMs": { "type": "number", "default": 60000, "minimum": 1000 }
       }
-    ]
+    }
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "node --test dist/*.test.js"
   },
+  "dependencies": { "@harnessx/core": "0.1.0" },
   "devDependencies": {
     "@types/vscode": "^1.96.0"
   }
