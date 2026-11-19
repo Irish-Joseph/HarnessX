@@ -1,0 +1,33 @@
+{
+  "name": "harnessx-vscode",
+  "displayName": "HarnessX",
+  "description": "Starter for a budget-aware coding harness",
+  "version": "0.1.0",
+  "private": true,
+  "publisher": "harnessx-dev",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:harnessx.showStatus"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "harnessx.showStatus",
+        "title": "HarnessX: Show Status"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test dist/*.test.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0"
+  }
+}
