@@ -4,6 +4,8 @@
   "description": "Local-first AI coding harness with approved tools and Docker execution",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/Irish-Joseph/HarnessX.git", "directory": "apps/vscode-extension" },
   "publisher": "harnessx-dev",
   "engines": {
     "vscode": "^1.96.0"
