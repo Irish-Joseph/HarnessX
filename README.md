@@ -1,6 +1,25 @@
 # HarnessX
 
-HarnessX is a local-first AI coding harness and VS Code extension. It connects to Ollama or an OpenAI-compatible chat API, keeps per-workspace sessions, searches the repository, proposes file edits for review, and runs approved commands in a disposable Docker container. A local Ollama model needs no paid service or API key.
+![Original illustration of the HarnessX coding workflow: repository context, local models, reviewed changes, and a sandbox](docs/assets/harnessx-overview.png)
+
+**A local-first, open-source AI coding harness for VS Code.** HarnessX connects a chat model to repository context and a small set of reviewed coding tools. It can answer questions, build a file-grounded plan, propose edits, and run approved verification commands in a disposable Docker container. Ollama provides a fully local path with no paid API, cloud account, or subscription.
+
+HarnessX is released under the [MIT License](LICENSE). The source, tests, and this original project illustration are in this repository. You can use, modify, and distribute the project under the license terms. Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+> **Project status:** usable local development build. The core workflows have unit and live local-model tests. The extension host smoke test does not automate sidebar clicks or diff approvals, and remote compatible endpoints have not been exercised with a live account. See [Tests](#tests) and [Current limits](#current-limits) before relying on it for sensitive repositories.
+
+## What it does
+
+| Area | Current behavior |
+| --- | --- |
+| Models | Ollama chat and embeddings; OpenAI-compatible streaming chat and embeddings; Qwen through Ollama or a configured compatible endpoint. |
+| Routing | Selects an available model using context fit, task complexity, capability, speed, preference, and estimated task cost; retries and falls back before partial output. |
+| Modes | Ask streams an answer; Plan uses validated repository paths; Agent makes bounded, stepwise tool calls. |
+| Repository tools | File listing, lexical and optional embedding search, read, reviewed complete-file edits, Git operations, tests, and rollback. |
+| Safety | Diff approval for edits, command approval, protected paths, Docker copy for command execution, network isolation, resource limits, and execution logs in local sessions. |
+| VS Code | Sidebar chat with mode and model selection, streaming, progress, session history, usage display, diff review, and rollback command. |
+
+The architecture is modular: providers, routing, workspace tools, agent orchestration, sessions, Git, and sandbox execution live in `packages/core`; the VS Code interface lives in `apps/vscode-extension`.
 
 ## Requirements
 
@@ -8,6 +27,8 @@ HarnessX is a local-first AI coding harness and VS Code extension. It connects t
 - A running Ollama server with a chat model, or a configured OpenAI-compatible endpoint
 - Docker Desktop or Docker Engine for Agent command execution and automatic verification
 - The sandbox image `node:22-bookworm-slim` for Node projects (configurable for other stacks)
+
+Docker is needed for Agent commands and automatic verification. Ask and Plan can run without Docker. The default Ollama configuration keeps prompts and source context on the local machine; configuring a remote model sends the context supplied to that provider to its endpoint.
 
 ## Install and run locally
 
@@ -108,6 +129,14 @@ The normal suite covers routing, provider streaming protocols, workspace safety,
 
 ## Current limits
 
-The agent uses a JSON tool protocol, so model quality strongly affects autonomous completion. Semantic search is bounded to 120 code chunks per query. Rollback backups survive an extension host restart, but there is no history browser or retention policy yet. The extension host test checks activation and commands; it does not automate webview clicks or diff approval. Small local models can make incorrect plans or tool choices. There is no claim of security isolation against a compromised Docker daemon.
+The agent uses a JSON tool protocol, so model quality strongly affects autonomous completion. Semantic search is bounded to 120 code chunks per query. Rollback backups survive an extension host restart, but there is no history browser or retention policy yet. The extension host test checks activation and commands; it does not automate webview clicks or diff approval. Small local models can make incorrect plans or tool choices. There is no claim of security isolation against a compromised Docker daemon. HarnessX is not independently security audited or published to the VS Code Marketplace.
 
-MIT licensed. See [LICENSE](LICENSE).
+## Contributing and support
+
+This project is developed in the open at [Irish-Joseph/HarnessX](https://github.com/Irish-Joseph/HarnessX). Issues are useful for reproducible bugs, model compatibility reports, documentation gaps, and focused feature proposals. Before opening a pull request, read [CONTRIBUTING.md](CONTRIBUTING.md), run the relevant tests, and describe what was verified. Do not commit credentials, local session stores, model files, or generated build artifacts.
+
+The most useful areas for contributions are automated sidebar interaction tests, real compatible-provider interoperability checks, broader sandbox images for non-Node repositories, and bounded session-history management. Features listed here as limits are not represented as already working.
+
+## License and artwork
+
+HarnessX source code, documentation, and the original README illustration are provided under the [MIT License](LICENSE). Keep the copyright and license notice when redistributing substantial portions. The repository may use third-party tools and models, including VS Code, Docker, Ollama, and Qwen; their own licenses and terms apply separately. The illustration is project artwork, not a screenshot of a running extension.
