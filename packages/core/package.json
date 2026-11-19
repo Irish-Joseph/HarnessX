@@ -6,6 +6,6 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "node --test dist/*.test.js"
+    "test": "node --test --test-concurrency=2 dist/*.test.js"
   }
 }
