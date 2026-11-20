@@ -2,6 +2,12 @@
 
 ![HarnessX — Local models. Real code. Your control.](docs/assets/harnessx-banner.png)
 
+[![CI](https://github.com/Irish-Joseph/HarnessX/actions/workflows/ci.yml/badge.svg)](https://github.com/Irish-Joseph/HarnessX/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-14b8a6?style=flat-square)](LICENSE)
+[![Node.js 22+](https://img.shields.io/badge/Node.js-22%2B-2563eb?style=flat-square)](#requirements)
+[![Local Ollama](https://img.shields.io/badge/AI-local%20Ollama-7c3aed?style=flat-square)](#install-and-run-locally)
+[![Open issues](https://img.shields.io/github/issues/Irish-Joseph/HarnessX?style=flat-square&color=0d9488)](https://github.com/Irish-Joseph/HarnessX/issues)
+
 **A local-first, open-source AI coding harness for VS Code.** HarnessX connects a chat model to repository context and a small set of reviewed coding tools. It can answer questions, build a file-grounded plan, propose edits, and run approved verification commands in a disposable Docker container. Ollama provides a fully local path with no paid API, cloud account, or subscription.
 
 HarnessX is released under the [MIT License](LICENSE). The source, tests, and original project artwork are in this repository. You can use, modify, and distribute the project under the license terms. Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -136,6 +142,8 @@ The agent uses a JSON tool protocol, so model quality strongly affects autonomou
 ## Contributing and support
 
 This project is developed in the open at [Irish-Joseph/HarnessX](https://github.com/Irish-Joseph/HarnessX). Issues are useful for reproducible bugs, model compatibility reports, documentation gaps, and focused feature proposals. Before opening a pull request, read [CONTRIBUTING.md](CONTRIBUTING.md), run the relevant tests, and describe what was verified. Do not commit credentials, local session stores, model files, or generated build artifacts.
+
+To pick up a task, browse [good first issues](https://github.com/Irish-Joseph/HarnessX/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22) or [help wanted issues](https://github.com/Irish-Joseph/HarnessX/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22help%20wanted%22). Current starting points include [issue templates](https://github.com/Irish-Joseph/HarnessX/issues/9), [sidebar interaction tests](https://github.com/Irish-Joseph/HarnessX/issues/5), [local compatible-provider integration](https://github.com/Irish-Joseph/HarnessX/issues/6), [Python/Rust sandbox presets](https://github.com/Irish-Joseph/HarnessX/issues/7), and [session-history management](https://github.com/Irish-Joseph/HarnessX/issues/8).
 
 The most useful areas for contributions are automated sidebar interaction tests, real compatible-provider interoperability checks, broader sandbox images for non-Node repositories, and bounded session-history management. Features listed here as limits are not represented as already working.
 
