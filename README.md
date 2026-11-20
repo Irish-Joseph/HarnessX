@@ -1,10 +1,10 @@
 # HarnessX
 
-![Original illustration of the HarnessX coding workflow: repository context, local models, reviewed changes, and a sandbox](docs/assets/harnessx-overview.png)
+![HarnessX — Local models. Real code. Your control.](docs/assets/harnessx-banner.png)
 
 **A local-first, open-source AI coding harness for VS Code.** HarnessX connects a chat model to repository context and a small set of reviewed coding tools. It can answer questions, build a file-grounded plan, propose edits, and run approved verification commands in a disposable Docker container. Ollama provides a fully local path with no paid API, cloud account, or subscription.
 
-HarnessX is released under the [MIT License](LICENSE). The source, tests, and this original project illustration are in this repository. You can use, modify, and distribute the project under the license terms. Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+HarnessX is released under the [MIT License](LICENSE). The source, tests, and original project artwork are in this repository. You can use, modify, and distribute the project under the license terms. Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 > **Project status:** usable local development build. The core workflows have unit and live local-model tests. The extension host smoke test does not automate sidebar clicks or diff approvals, and remote compatible endpoints have not been exercised with a live account. See [Tests](#tests) and [Current limits](#current-limits) before relying on it for sensitive repositories.
 
@@ -20,6 +20,8 @@ HarnessX is released under the [MIT License](LICENSE). The source, tests, and th
 | VS Code | Sidebar chat with mode and model selection, streaming, progress, session history, usage display, diff review, and rollback command. |
 
 The architecture is modular: providers, routing, workspace tools, agent orchestration, sessions, Git, and sandbox execution live in `packages/core`; the VS Code interface lives in `apps/vscode-extension`.
+
+![Illustration of the HarnessX workflow: repository context, local models, reviewed changes, and a sandbox](docs/assets/harnessx-overview.png)
 
 ## Requirements
 
@@ -139,4 +141,4 @@ The most useful areas for contributions are automated sidebar interaction tests,
 
 ## License and artwork
 
-HarnessX source code, documentation, and the original README illustration are provided under the [MIT License](LICENSE). Keep the copyright and license notice when redistributing substantial portions. The repository may use third-party tools and models, including VS Code, Docker, Ollama, and Qwen; their own licenses and terms apply separately. The illustration is project artwork, not a screenshot of a running extension.
+HarnessX source code, documentation, and original README artwork are provided under the [MIT License](LICENSE). Keep the copyright and license notice when redistributing substantial portions. The repository may use third-party tools and models, including VS Code, Docker, Ollama, and Qwen; their own licenses and terms apply separately. The artwork is project imagery, not a screenshot of a running extension.
